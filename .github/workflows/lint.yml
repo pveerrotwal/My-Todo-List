@@ -20,8 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python3 -m pip install --upgrade pip
-        pip3 install flake8 black
+        python -m pip install --upgrade pip
+        pip install flake8 black
 
     - name: Run Flake8
       run: flake8
