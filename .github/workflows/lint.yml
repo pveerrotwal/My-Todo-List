@@ -1,0 +1,33 @@
+name: Lint Code
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install flake8 black
+
+    - name: Run Flake8
+      run: flake8
+
+    - name: Run Black
+      run: black --check .
+
+    - name: Check for unstaged changes
+      run: git diff --exit-code
